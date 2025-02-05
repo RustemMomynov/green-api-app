@@ -9,8 +9,6 @@ import { addMessage } from "../features/chat/model/chatSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, AppRootStateType } from "./store";
 
-// Типизация для сообщений
-
 function App() {
   const apiTokenInstance = "359a39592dc148ba9ed4e06bc7b78c75ad5f299fd56240849b";
   const idInstance = "7103185037";
