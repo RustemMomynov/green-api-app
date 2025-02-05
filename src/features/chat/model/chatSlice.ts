@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type Message = {
   id: string;
-  sender: string;
+  senderName: string;
   textMessage: string;
   isSent: boolean;
 };
