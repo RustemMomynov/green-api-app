@@ -5,14 +5,12 @@ import {
   useGetNotificationQuery,
   useSendMessageMutation,
 } from "../features/chat/api/chatApi";
+import { addMessage, Message } from "../features/chat/model/chatSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, AppRootStateType } from "./store";
+import { RootState } from "@reduxjs/toolkit/query";
 
 // Типизация для сообщений
-type Message = {
-  id: string;
-  sender: string;
-  textMessage: string;
-  isSent: boolean;
-};
 
 function App() {
   const [sendMessage] = useSendMessageMutation();
@@ -27,7 +25,8 @@ function App() {
     }
   );
 
-  const [messages, setMessages] = useState<Message[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const messages = useSelector((state: AppRootStateType) => state.chat);
 
   useEffect(() => {
     if (data && data.body) {
@@ -38,7 +37,7 @@ function App() {
         textMessage: receivedMessage,
         isSent: false,
       };
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      dispatch(addMessage(newMessage));
 
       // Удаление уведомления после получения сообщения
       if (data.receiptId) {
@@ -77,7 +76,7 @@ function App() {
         textMessage: messageText,
         isSent: true,
       };
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      dispatch(addMessage(newMessage));
     } catch (err) {
       console.error("Ошибка отправки", err);
     }
@@ -97,7 +96,7 @@ function App() {
               key={message.id}
               className={message.isSent ? "sent-message" : "received-message"}
             >
-              <strong>{message.isSent ? "You" : message.sender}:</strong>{" "}
+              <strong>{message.isSent ? "You" : message.sender}:</strong>
               {message.textMessage}
             </div>
           ))}
