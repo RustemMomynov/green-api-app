@@ -4,6 +4,7 @@ import { useLazyGetAccountSettingsQuery } from "./../api/authApi";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "./../../../app/store";
 import { login, setInstances } from "./../model/authSlice";
+import s from "./Auth.module.scss";
 
 // Значения по умолчанию
 const initialValues = {
@@ -41,37 +42,53 @@ export const Auth = () => {
   };
 
   return (
-    <div>
-      <h2>Sign in</h2>
+    <div className={s.auth}>
+      <h2 className={s.h}>Вход в WhatsApp</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <div>
-            <label htmlFor="apiTokenInstance">API Token Instance</label>
+        <Form className={s.form}>
+          <div className={s.inputWrapper}>
+            <label className={s.label} htmlFor="apiTokenInstance">
+              API Token Instance
+            </label>
             <Field
-              type="text"
+              className={s.input}
+              type="password"
               id="apiTokenInstance"
               name="apiTokenInstance"
               placeholder="Введите API Token Instance"
             />
-            <ErrorMessage name="apiTokenInstance" component="div" />
+            <ErrorMessage
+              className={s.inputError}
+              name="apiTokenInstance"
+              component="div"
+            />
           </div>
 
-          <div>
-            <label htmlFor="idInstance">ID Instance</label>
+          <div className={s.inputWrapper}>
+            <label className={s.label} htmlFor="idInstance">
+              ID Instance
+            </label>
             <Field
+              className={s.input}
               type="text"
               id="idInstance"
               name="idInstance"
               placeholder="Введите ID Instance"
             />
-            <ErrorMessage name="idInstance" component="div" />
+            <ErrorMessage
+              className={s.inputError}
+              name="idInstance"
+              component="div"
+            />
           </div>
 
-          <button type="submit">Отправить</button>
+          <button className={s.button} type="submit">
+            Sign in
+          </button>
         </Form>
       </Formik>
     </div>
