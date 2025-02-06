@@ -7,8 +7,10 @@ import {
 } from "../api/chatApi";
 import { addMessageToChat } from "../model/chatSlice";
 import { InstanceAuth } from "../../../common/types";
-import { SendMessageForm } from "./SendMessageForm";
-import { ChatIdForm } from "./ChatIdForm";
+import { SendMessageForm } from "./form/SendMessageForm";
+import { ChatIdForm } from "./form/ChatIdForm";
+import s from "./Chat.module.scss";
+import { Message } from "./message/Message";
 
 export const Chat = () => {
   const { idInstance, apiTokenInstance } = useSelector<
@@ -58,31 +60,35 @@ export const Chat = () => {
   }, [data, deleteNotification, dispatch, chatId]);
 
   return (
-    <div className="chat">
+    <div>
       {chatId ? (
-        <>
+        <div className={s.chat}>
+          <header className={s.header}>
+            <h2>Чат</h2>
+          </header>
+          <div className={s.messagesWrapper}>
+            {error && <p style={{ color: "red" }}>Ошибка загрузки данных</p>}
+            {messages.length > 0 ? (
+              <div className={s.messages}>
+                {messages
+                  .slice()
+                  .reverse()
+                  .map((message) => (
+                    <Message
+                      id={message.id}
+                      isSent={message.isSent}
+                      senderName={message.senderName}
+                      text={message.textMessage}
+                    />
+                  ))}
+              </div>
+            ) : (
+              <div>Начните чат</div>
+            )}
+          </div>
+
           <SendMessageForm chatId={chatId} />
-          {error && <p style={{ color: "red" }}>Ошибка загрузки данных</p>}
-          {messages.length > 0 ? (
-            <div className="chat">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={
-                    message.isSent ? "sent-message" : "received-message"
-                  }
-                >
-                  <strong>
-                    {message.isSent ? "You" : message.senderName}:
-                  </strong>
-                  {message.textMessage}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div>Начните чат</div>
-          )}
-        </>
+        </div>
       ) : (
         <ChatIdForm setChatId={setChatId} />
       )}

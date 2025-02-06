@@ -59,7 +59,6 @@ export const Auth = () => {
               type="password"
               id="apiTokenInstance"
               name="apiTokenInstance"
-              placeholder="Введите API Token Instance"
             />
             <ErrorMessage
               className={s.inputError}
@@ -77,7 +76,6 @@ export const Auth = () => {
               type="text"
               id="idInstance"
               name="idInstance"
-              placeholder="Введите ID Instance"
             />
             <ErrorMessage
               className={s.inputError}

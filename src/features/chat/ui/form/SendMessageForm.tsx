@@ -1,10 +1,11 @@
 import { Formik, Field, Form } from "formik";
-import { useSendMessageMutation } from "../api/chatApi";
+import { useSendMessageMutation } from "../../api/chatApi";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, AppRootStateType } from "../../../app/store";
-import { addMessageToChat } from "../model/chatSlice";
-import { InstanceAuth } from "../../../common/types";
-import { useState } from "react";
+import { AppDispatch, AppRootStateType } from "../../../../app/store";
+import { addMessageToChat } from "../../model/chatSlice";
+import { InstanceAuth } from "../../../../common/types";
+import s from "./Form.module.scss";
+import sendIcon from "./../../../../assets/send.png";
 
 type Props = {
   chatId: string;
@@ -45,22 +46,26 @@ export const SendMessageForm = ({ chatId }: Props) => {
   return (
     <Formik
       initialValues={{ message: "" }}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         handleSendMessage(values.message);
+        resetForm(); // Сброс формы после отправки
       }}
     >
-      <Form>
+      <Form className={s.sendMessageForm}>
         <div>
           <Field
             as="textarea"
             name="message"
             rows={4}
             cols={50}
-            placeholder="Введите ваше сообщение"
+            placeholder="Введите сообщение"
+            className={s.textarea}
           />
         </div>
         <div>
-          <button type="submit">Отправить</button>
+          <button type="submit" className={s.sendMessageButton}>
+            <img src={sendIcon} alt="" className={s.img} />
+          </button>
         </div>
       </Form>
     </Formik>

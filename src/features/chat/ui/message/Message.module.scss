@@ -1,0 +1,32 @@
+.receivedMessage,
+.sentMessage {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 500px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.sentMessage {
+  background-color: rgb(217, 253, 211);
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.receivedMessage {
+  background-color: white;
+  align-self: flex-start;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.text {
+  white-space: pre-wrap;
+  word-break: break-word;
+}

@@ -1,4 +1,5 @@
 import { Formik, Field, Form } from "formik";
+import s from "./Form.module.scss";
 
 export const ChatIdForm = ({
   setChatId,
@@ -14,16 +15,19 @@ export const ChatIdForm = ({
         }
       }}
     >
-      <Form>
-        <label htmlFor="chatId">Введите номер телефона получателя</label>
+      <Form className={s.chatIdForm}>
+        <h2 className={s.h}>Введите номер телефона получателя</h2>
         <Field
           type="tel"
           id="phoneNumber"
           name="phoneNumber"
-          placeholder="Введите номер телефона получателя"
+          placeholder="7700...."
+          className={s.input}
           required
         />
-        <button type="submit">Подключиться</button>
+        <button className={s.button} type="submit">
+          Подключиться
+        </button>
       </Form>
     </Formik>
   );
