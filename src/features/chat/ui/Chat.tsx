@@ -64,7 +64,7 @@ export const Chat = () => {
       {chatId ? (
         <div className={s.chat}>
           <header className={s.header}>
-            <h2>Чат</h2>
+            <h2>{chatId}</h2>
           </header>
           <div className={s.messagesWrapper}>
             {error && <p style={{ color: "red" }}>Ошибка загрузки данных</p>}

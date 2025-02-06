@@ -8,7 +8,6 @@
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
   z-index: 20;
 }
 
@@ -36,8 +35,6 @@
 .messages {
   display: flex;
   flex-direction: column-reverse;
-
-  gap: 10px;
 }
 
 .form {
