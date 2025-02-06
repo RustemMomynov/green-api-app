@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { Auth } from "../features/auth/ui/Auth";
 import { Chat } from "../features/chat/ui/Chat";
-import "./App.css";
+import "./App.scss";
 import { useSelector } from "react-redux";
 import { AppRootStateType } from "./store";
 import { useEffect } from "react";
