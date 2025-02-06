@@ -1,6 +1,6 @@
-// common
+import { InstanceAuth } from "../../../common/types";
 
-export type InstanceAuth = { idInstance: string; apiTokenInstance: string };
+// common
 
 type InstanceData = {
   idInstance: string;

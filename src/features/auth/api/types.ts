@@ -1,0 +1,26 @@
+export type GetAccountSettingsResponse = {
+  wid: string;
+  countryInstance: string;
+  typeAccount: string;
+  webhookUrl: string;
+  webhookUrlToken: string;
+  delaySendMessagesMilliseconds: number;
+  markIncomingMessagesReaded: "yes" | "no";
+  markIncomingMessagesReadedOnReply: "yes" | "no";
+  sharedSession: "yes" | "no";
+  proxyInstance: string;
+  outgoingWebhook: "yes" | "no";
+  outgoingMessageWebhook: "yes" | "no";
+  outgoingAPIMessageWebhook: "yes" | "no";
+  incomingWebhook: "yes" | "no";
+  deviceWebhook: "yes" | "no";
+  statusInstanceWebhook: "yes" | "no";
+  stateWebhook: "yes" | "no";
+  enableMessagesHistory: "yes" | "no";
+  keepOnlineStatus: "yes" | "no";
+  pollMessageWebhook: "yes" | "no";
+  incomingBlockWebhook: "yes" | "no";
+  incomingCallWebhook: "yes" | "no";
+  editedMessageWebhook: "yes" | "no";
+  deletedMessageWebhook: "yes" | "no";
+};

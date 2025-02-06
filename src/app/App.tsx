@@ -1,9 +1,25 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { Auth } from "../features/auth/ui/Auth";
 import { Chat } from "../features/chat/ui/Chat";
 import "./App.css";
+import { useSelector } from "react-redux";
+import { AppRootStateType } from "./store";
+import { useEffect } from "react";
 
 function App() {
+  const isAuth = useSelector<AppRootStateType>(
+    (state) => state.auth.isAuthorized
+  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/chat", { replace: true });
+    } else {
+      navigate("/auth", { replace: true });
+    }
+  }, [isAuth, navigate]);
+
   return (
     <div className="App">
       <Routes>

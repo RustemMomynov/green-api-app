@@ -1,14 +1,25 @@
 import { baseApi } from "../../../app/baseApi";
+import { InstanceAuth } from "../../../common/types";
 import {
   DeleteNotificationRequest,
   DeleteNotificationResponse,
   GetMessageNotificationResponse,
-  InstanceAuth,
   SendMessageRequest,
 } from "./types";
 
 export const chatApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    // GET
+    getNotification: builder.query<
+      GetMessageNotificationResponse,
+      InstanceAuth
+    >({
+      query: ({ apiTokenInstance, idInstance }) => ({
+        url: `/waInstance${idInstance}/receiveNotification/${apiTokenInstance}?receiveTimeout=5`,
+      }),
+    }),
+
+    // POST
     sendMessage: builder.mutation<
       {
         idMessage: string;
@@ -25,15 +36,7 @@ export const chatApi = baseApi.injectEndpoints({
       }),
     }),
 
-    getNotification: builder.query<
-      GetMessageNotificationResponse,
-      InstanceAuth
-    >({
-      query: ({ apiTokenInstance, idInstance }) => ({
-        url: `/waInstance${idInstance}/receiveNotification/${apiTokenInstance}?receiveTimeout=5`,
-      }),
-    }),
-
+    // DELETE
     deleteNotification: builder.mutation<
       DeleteNotificationResponse,
       DeleteNotificationRequest

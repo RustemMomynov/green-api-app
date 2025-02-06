@@ -6,5 +6,4 @@ export const baseApi = createApi({
     baseUrl: "https://api.green-api.com",
   }),
   endpoints: () => ({}),
-  tagTypes: [],
 });
