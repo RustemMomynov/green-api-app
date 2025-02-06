@@ -1,12 +1,16 @@
+.messageWrapper {
+  width: 970px;
+}
+
 .receivedMessage,
 .sentMessage {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 20px;
   padding: 10px;
   border-radius: 8px;
   min-width: 300px;
-  max-width: 500px;
+  max-width: 400px;
   word-break: break-word;
   overflow-wrap: break-word;
 }
