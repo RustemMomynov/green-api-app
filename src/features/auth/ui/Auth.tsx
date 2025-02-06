@@ -1,11 +1,9 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useLazyGetAccountSettingsQuery } from "./../api/authApi";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, AppRootStateType } from "./../../../app/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "./../../../app/store";
 import { login, setInstances } from "./../model/authSlice";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 // Значения по умолчанию
 const initialValues = {
